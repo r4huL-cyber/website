@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Identify Encryption by R4huL</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <nav style="margin-bottom: 20px; ">
+                  <a href="/" style="color: white; margin-right: 20px; text-decoration: none;">↺ Back</a>
+            
+        </nav>
+
+        <h1>🔍 Identify Encrypted Text</h1>
+        <form method="POST">
+            <textarea name="encrypted_text" placeholder="Paste encrypted text here..." required>{{ request.form.get('encrypted_text', '') }}</textarea>
+            <div class="buttons">
+                <button type="submit">Identify</button>
+            </div>
+        </form>
+
+        {% if result %}
+        <div class="result">
+            <h2>Result:</h2>
+            <p>{{ result }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

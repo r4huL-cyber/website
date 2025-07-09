@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Multi Encryptor by R4huL</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Multi Encryption / Decryption</h1>
+        <h4>By R4huL</h4>
+        <br>
+        <form method="POST">
+            <textarea name="text" placeholder="Enter your text here..." required>{{ request.form.get('text', '') }}</textarea>
+
+            <select name="algorithm" required>
+                <option value="base64">Base64</option>
+                <option value="base32">Base32</option>
+                <option value="caesar">Caesar Cipher</option>
+                <option value="rot13">ROT13</option>
+                <option value="vigenere">Vigenère Cipher</option>
+                <option value="aes">AES (Password Required)</option>
+                <option value="sha256">SHA256 (One-way Hash)</option>
+            </select>
+
+            <input type="text" name="key" placeholder="Key / Shift (if needed)" value="{{ request.form.get('key', '') }}">
+
+            <div class="buttons">
+                <button type="submit" name="operation" value="encrypt">Encrypt</button>
+                <button type="submit" name="operation" value="decrypt">Decrypt</button>
+                <a href="{{ url_for('identify') }}">
+    <button type="button">🔍Identifier</button>
+</a>
+
+            </div>
+        </form>
+
+        {% if result %}
+            <div class="result">
+                <h2>Result:</h2>
+                <p>{{ result }}</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
